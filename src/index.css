@@ -4,6 +4,10 @@
   body { font-family: 'Inter var', sans-serif; }
 }
 
+body {
+  @apply bg-slate-50
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
