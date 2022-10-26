@@ -1,5 +1,3 @@
-import React from 'react'
-
 import {
   MdKeyboardArrowUp,
   MdOutlineShoppingCart,
@@ -11,7 +9,7 @@ import { FiUsers } from 'react-icons/fi'
 import colors from 'tailwindcss/colors'
 import { WIDGET_TYPES } from '../config'
 import { formatCurrency, formatNumber } from '../utils'
-import Card from './Card'
+import Card from './common/Card'
 
 export default function Widget({ type }) {
   let variants

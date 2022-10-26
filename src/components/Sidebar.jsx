@@ -1,5 +1,3 @@
-import React from 'react'
-
 import {
   MdOutlineSpaceDashboard,
   MdOutlineShoppingCart,
@@ -19,159 +17,115 @@ import { CgProfile } from 'react-icons/cg'
 
 import colors from 'tailwindcss/colors'
 import { Switch } from '@headlessui/react'
-import { useState } from 'react'
+import { useContext } from 'react'
+import { Link } from 'react-router-dom'
+import { ThemeContext } from '../context/ThemeContext'
 
 export default function Sidebar() {
-  const menuItems = {
-    main: {
-      title: 'Main',
-      elements: [
-        {
-          title: 'Dashboard',
-          icon: <MdOutlineSpaceDashboard size={24} color={colors.indigo[400]} />,
-        },
-      ],
-    },
-    lists: {
-      title: 'Lists',
-      elements: [
-        {
-          title: 'Users',
-          icon: <FiUsers size={24} color={colors.indigo[400]} />,
-        },
-        {
-          title: 'Products',
-          icon: <MdOutlineShoppingCart size={24} color={colors.indigo[400]} />,
-        },
-        {
-          title: 'Orders',
-          icon: <HiOutlineDocumentDuplicate size={24} color={colors.indigo[400]} />,
-        },
-        {
-          title: 'Delivery',
-          icon: <TbTruckDelivery size={24} color={colors.indigo[400]} />,
-        },
-      ],
-    },
-    useful: {
-      title: 'Useful',
-      elements: [
-        {
-          title: 'Stats',
-          icon: <IoIosStats size={24} color={colors.indigo[400]} />,
-        },
-        {
-          title: 'Notifications',
-          icon: <MdOutlineNotificationsNone size={24} color={colors.indigo[400]} />,
-        },
-      ],
-    },
-    service: {
-      title: 'Service',
-      elements: [
-        {
-          title: 'System Health',
-          icon: <MdOutlineHealthAndSafety size={24} color={colors.indigo[400]} />,
-        },
-        {
-          title: 'Logs',
-          icon: <MdGrading size={24} color={colors.indigo[400]} />,
-        },
-        {
-          title: 'Settings',
-          icon: <MdOutlineSettings size={24} color={colors.indigo[400]} />,
-        },
-      ],
-    },
-    user: {
-      title: 'User',
-      elements: [
-        {
-          title: 'Profile',
-          icon: <CgProfile size={24} color={colors.indigo[400]} />,
-        },
-        {
-          title: 'Logout',
-          icon: <MdLogout size={24} color={colors.indigo[400]} />,
-        },
-      ],
-    },
-  }
-
   return (
-    <div className="min-h-screen w-1/6 border-r border-r-gray-200 bg-white ">
-      <div className="flex h-[81px] items-center justify-center border-b border-b-gray-200 p-4 pb-4">
-        <h1 className="text-2xl font-bold text-indigo-500">Admin panel</h1>
+    <div className="min-h-screen w-1/6 border-r border-r-gray-200 bg-white dark:border-r-gray-600 dark:bg-gray-800">
+      <div className="flex h-[81px] items-center justify-center border-b border-b-gray-200 p-4 pb-4 dark:border-b-gray-600">
+        <h1 className="text-2xl font-bold text-indigo-500 dark:text-indigo-50">
+          <Link to="/">Admin panel</Link>
+        </h1>
       </div>
 
       <ul className="px-4">
-        <p className="pt-4 text-xs font-semibold uppercase tracking-wide text-gray-400">
-          {menuItems.main.title}
+        <p className="pt-4 text-xs font-semibold uppercase tracking-wide text-gray-400 dark:text-gray-200">
+          Main
         </p>
-        {menuItems.main.elements.map((item, idx) => (
-          <li
-            className="flex cursor-pointer items-center gap-2 py-2 hover:bg-indigo-50"
-            key={idx}
-          >
-            {item.icon}
-            <span className="text-md font-light">{item.title}</span>
+        <Link to="/">
+          <li className="flex cursor-pointer items-center gap-2 py-2 pl-2 hover:bg-indigo-50 dark:hover:bg-indigo-900/70">
+            <MdOutlineSpaceDashboard size={24} color={colors.indigo[400]} />
+            <span className="text-md font-light dark:text-white">Dashboard</span>
           </li>
-        ))}
-        <p className="pt-4 text-xs font-semibold uppercase tracking-wide text-gray-400">
-          {menuItems.lists.title}
-        </p>
-        {menuItems.lists.elements.map((item, idx) => (
-          <li
-            className="flex cursor-pointer items-center gap-2 py-2 hover:bg-indigo-50"
-            key={idx}
-          >
-            {item.icon}
-            <span className="text-md font-light">{item.title}</span>
-          </li>
-        ))}
+        </Link>
 
-        <p className="pt-4 text-xs font-semibold uppercase tracking-wide text-gray-400">
-          {menuItems.useful.title}
+        <p className="pt-4 text-xs font-semibold uppercase tracking-wide text-gray-400 dark:text-gray-200">
+          Lists
         </p>
-        {menuItems.useful.elements.map((item, idx) => (
-          <li
-            className="flex cursor-pointer items-center gap-2 py-2 hover:bg-indigo-50"
-            key={idx}
-          >
-            {item.icon}
-            <span className="text-md font-light">{item.title}</span>
+        <Link to="/users">
+          <li className="flex cursor-pointer items-center gap-2 py-2 pl-2 hover:bg-indigo-50 dark:hover:bg-indigo-900/70">
+            <FiUsers size={24} color={colors.indigo[400]} />
+            <span className="text-md font-light dark:text-white">Users</span>
           </li>
-        ))}
+        </Link>
+        <Link to="/products">
+          <li className="flex cursor-pointer items-center gap-2 py-2 pl-2 hover:bg-indigo-50 dark:hover:bg-indigo-900/70">
+            <MdOutlineShoppingCart size={24} color={colors.indigo[400]} />
+            <span className="text-md font-light dark:text-white">Products</span>
+          </li>
+        </Link>
+        <Link to="/orders">
+          <li className="flex cursor-pointer items-center gap-2 py-2 pl-2 hover:bg-indigo-50 dark:hover:bg-indigo-900/70">
+            <HiOutlineDocumentDuplicate size={24} color={colors.indigo[400]} />
+            <span className="text-md font-light dark:text-white">Orders</span>
+          </li>
+        </Link>
+        <Link to="/delivery">
+          <li className="flex cursor-pointer items-center gap-2 py-2 pl-2 hover:bg-indigo-50 dark:hover:bg-indigo-900/70">
+            <TbTruckDelivery size={24} color={colors.indigo[400]} />
+            <span className="text-md font-light dark:text-white">Delivery</span>
+          </li>
+        </Link>
 
-        <p className="pt-4 text-xs font-semibold uppercase tracking-wide text-gray-400">
-          {menuItems.service.title}
+        <p className="pt-4 text-xs font-semibold uppercase tracking-wide text-gray-400 dark:text-gray-200">
+          Useful
         </p>
-        {menuItems.service.elements.map((item, idx) => (
-          <li
-            className="flex cursor-pointer items-center gap-2 py-2 hover:bg-indigo-50"
-            key={idx}
-          >
-            {item.icon}
-            <span className="text-md font-light">{item.title}</span>
+        <Link to="/stats">
+          <li className="flex cursor-pointer items-center gap-2 py-2 pl-2 hover:bg-indigo-50 dark:hover:bg-indigo-900/70">
+            <IoIosStats size={24} color={colors.indigo[400]} />
+            <span className="text-md font-light dark:text-white">Stats</span>
           </li>
-        ))}
+        </Link>
+        <Link to="/notifications">
+          <li className="flex cursor-pointer items-center gap-2 py-2 pl-2 hover:bg-indigo-50 dark:hover:bg-indigo-900/70">
+            <MdOutlineNotificationsNone size={24} color={colors.indigo[400]} />
+            <span className="text-md font-light dark:text-white">Notifications</span>
+          </li>
+        </Link>
 
-        <p className="pt-4 text-xs font-semibold uppercase tracking-wide text-gray-400">
-          {menuItems.user.title}
+        <p className="pt-4 text-xs font-semibold uppercase tracking-wide text-gray-400 dark:text-gray-200">
+          Service
         </p>
-        {menuItems.user.elements.map((item, idx) => (
-          <li
-            className="flex cursor-pointer items-center gap-2 py-2 hover:bg-indigo-50"
-            key={idx}
-          >
-            {item.icon}
-            <span className="text-md font-light">{item.title}</span>
+        <Link to="/">
+          <li className="flex cursor-pointer items-center gap-2 py-2 pl-2 hover:bg-indigo-50 dark:hover:bg-indigo-900/70">
+            <MdOutlineHealthAndSafety size={24} color={colors.indigo[400]} />
+            <span className="text-md font-light dark:text-white">System Health</span>
           </li>
-        ))}
+        </Link>
+        <Link to="/">
+          <li className="flex cursor-pointer items-center gap-2 py-2 pl-2 hover:bg-indigo-50 dark:hover:bg-indigo-900/70">
+            <MdGrading size={24} color={colors.indigo[400]} />
+            <span className="text-md font-light dark:text-white">Logs</span>
+          </li>
+        </Link>
+        <Link to="/">
+          <li className="flex cursor-pointer items-center gap-2 py-2 pl-2 hover:bg-indigo-50 dark:hover:bg-indigo-900/70">
+            <MdOutlineSettings size={24} color={colors.indigo[400]} />
+            <span className="text-md font-light dark:text-white">Settings</span>
+          </li>
+        </Link>
+
+        <p className="pt-4 text-xs font-semibold uppercase tracking-wide text-gray-400 dark:text-gray-200">
+          User
+        </p>
+        <Link to="/">
+          <li className="flex cursor-pointer items-center gap-2 py-2 pl-2 hover:bg-indigo-50 dark:hover:bg-indigo-900/70">
+            <CgProfile size={24} color={colors.indigo[400]} />
+            <span className="text-md font-light dark:text-white">Profile</span>
+          </li>
+        </Link>
+        <Link to="/">
+          <li className="flex cursor-pointer items-center gap-2 py-2 pl-2 hover:bg-indigo-50 dark:hover:bg-indigo-900/70">
+            <MdLogout size={24} color={colors.indigo[400]} />
+            <span className="text-md font-light dark:text-white">Logout</span>
+          </li>
+        </Link>
       </ul>
 
       <div className="px-4">
-        <p className="mb-2 pt-4 text-xs font-semibold uppercase tracking-wide text-gray-400">
+        <p className="mb-2 pt-4 text-xs font-semibold uppercase tracking-wide text-gray-400 dark:text-gray-200">
           Dark Mode
         </p>
         <DarkMode />
@@ -181,22 +135,21 @@ export default function Sidebar() {
 }
 
 function DarkMode() {
-  const [isDarkMode, setIsDarkMode] = useState(false)
-
+  const { isDark, setIsDark } = useContext(ThemeContext)
   return (
     <Switch
-      checked={isDarkMode}
-      onChange={setIsDarkMode}
+      checked={isDark}
+      onChange={setIsDark}
       className={`${
-        isDarkMode ? 'bg-stone-800' : 'bg-yellow-400'
+        isDark ? 'border border-stone-600 bg-stone-800' : 'bg-yellow-400'
       } relative inline-flex h-9 w-16 items-center rounded-full`}
     >
       <span
         className={`${
-          isDarkMode ? 'translate-x-8' : 'translate-x-1'
+          isDark ? 'translate-x-8' : 'translate-x-1'
         }  flex h-7 w-7 transform items-center justify-center rounded-full bg-white transition`}
       >
-        {isDarkMode ? (
+        {isDark ? (
           <MdOutlineDarkMode color={colors.stone[800]} />
         ) : (
           <MdOutlineWbSunny color={colors.yellow[700]} />
